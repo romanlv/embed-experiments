@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9e06b390-3974-4009-b73a-3eeab41b939f/deploy-status)](https://app.netlify.com/sites/meek-stardust-4e88b5/deploys)
+
 # Next js Blog Boilerplate with Tailwind CSS [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40Ixartz)](https://twitter.com/ixartz)
 
 <p align="center">
