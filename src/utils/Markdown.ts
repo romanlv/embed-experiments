@@ -9,15 +9,8 @@ import { unified } from 'unified';
 
 const embed = `
   <link rel="stylesheet" href="http://127.0.0.1:8081/assets/app.e1c67b83.css">
-  <div id="root"></div>
+  <div data-widget="highlight-page" data-page-slug="l89r971b"></div>
   <script type="module" crossorigin src="http://127.0.0.1:8081/assets/embed.js?v=1"></script>
-
-  <script type="module">
-    HighlightSdk.renderPage(document.getElementById("root"), {
-      pageSlug: "l89r971b"
-    });
-  </script>
-
 `;
 
 export async function markdownToHtml(markdown: string) {
