@@ -8,7 +8,7 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 
 const embed = `
-  <link rel="stylesheet" href="https://gate.highlightstaging.xyz/assets/app.e1c67b83.css">
+  <link rel="stylesheet" href="https://gate.highlightstaging.xyz/assets/app.66b0e10b.css">
   <div data-widget="highlight-gated-page" data-page-slug="l89r971b"></div>
   <script type="module" crossorigin src="https://gate.highlightstaging.xyz/assets/embed.js?v=1"></script>
 `;
