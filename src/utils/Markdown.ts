@@ -7,11 +7,23 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 
-const embed = `
-  <link rel="stylesheet" href="https://gate.highlightstaging.xyz/assets/app.66b0e10b.css">
+const embedPage = `
+  <link rel="stylesheet" href="https://gate.highlightstaging.xyz/assets/embed.css">
   <div data-widget="highlight-gated-page" data-page-slug="l89r971b"></div>
   <script type="module" crossorigin src="https://gate.highlightstaging.xyz/assets/embed.js?v=1"></script>
 `;
+
+const embedMint = `
+<link rel="stylesheet" href="https://mint.highlightstaging.xyz/assets/embed.css">
+<div data-widget="highlight-mint-page" data-mint-collection-id="6365559177d12cae7ff9e532"></div>
+<script type="module" crossorigin="true" src="https://mint.highlightstaging.xyz/assets/embed.js?v=1"></script>
+`;
+
+// const embedMintLocal = `
+// <link rel="stylesheet" href="https://mint.highlightstaging.xyz/assets/embed.css">
+// <div data-widget="highlight-mint-page" data-mint-collection-id="6365559177d12cae7ff9e532"></div>
+// <script type="module" crossorigin="true" src="https://mint.highlightstaging.xyz/assets/embed.js?v=1"></script>
+// `
 
 export async function markdownToHtml(markdown: string) {
   const result = await unified()
@@ -24,5 +36,6 @@ export async function markdownToHtml(markdown: string) {
   return result
     .toString()
     .replace(/@@baseUrl@@/g, process.env.baseUrl || '')
-    .replace(/@@embed@@/g, embed);
+    .replace(/@@embedPage@@/g, embedPage)
+    .replace(/@@embedMint@@/g, embedMint);
 }
