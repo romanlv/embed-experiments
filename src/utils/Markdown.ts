@@ -14,8 +14,8 @@ const embedPage = `
 `;
 
 const embedMint = `
-<link rel="stylesheet" href="https://mint.highlightstaging.xyz/assets/embed.css">
-<div data-widget="highlight-mint-page" data-mint-collection-id="6365559177d12cae7ff9e532"></div>
+<link rel="stylesheet" href="https://mint.highlightstaging.xyz/assets/embed.css"/>
+<div data-widget="highlight-mint-page" data-mint-collection-id="63750d80ba7a070adfefe9ec"></div>
 <script type="module" crossorigin="true" src="https://mint.highlightstaging.xyz/assets/embed.js?v=1"></script>
 `;
 
