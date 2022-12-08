@@ -10,8 +10,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 
 @@embedMintCard1@@
+
+
 @@embedMintCard2@@
+
+
 @@embedMintCard3@@
+
+
 @@embedMintCard4@@
 
 
