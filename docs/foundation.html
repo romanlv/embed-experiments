@@ -20,6 +20,12 @@
       .cards > div {
         margin: 5px;
       }
+
+      .embed-root {
+        // styling through class names can be used but embed jss-in-css always applied last
+        // so any conflicting styles will be overwritten unless !important is used
+        
+      }
     </style>
   </head>
   <body>
@@ -34,7 +40,12 @@
         
         <div data-widget="highlight-mint-card" data-mint-collection-id="6554f33e52022486eadef393" data-template="foundation"></div>
 
-        <div data-widget="highlight-mint-card" data-mint-collection-id="65578259cf86f6d22b0a1942" data-template="foundation"></div>
+        <div data-widget="highlight-mint-card" 
+            data-mint-collection-id="65578259cf86f6d22b0a1942" 
+            data-template="foundation"
+            data-styles='{ root: { maxWidth: "100%", "@media (min-width: 800px)": { maxWidth: 600 } } }'
+            data-class-names='{ root: "embed-root" }'
+        ></div>
 
       </div>
        
