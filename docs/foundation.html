@@ -19,11 +19,15 @@
       }
       .cards > div {
         margin: 5px;
+        flex-grow: 1;
       }
 
       .embed-root {
-        // styling through class names can be used but embed jss-in-css always applied last
-        // so any conflicting styles will be overwritten unless !important is used
+        /* 
+          styling through class names can be used but embed jss-in-css always applied last
+          so any conflicting styles will be overwritten  unless !important is used
+          `data-styles` does not have this problem, as it merges default styles with custom ones
+        */
         
       }
     </style>
