@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mint redirect</title>
+
+  <style>
+  </style>
+  <script async type="module" crossorigin src="/assets/embedPreview.e0844a5e.js"></script>
+</head>
+
+<body>
+  <script>
+    const path = new URLSearchParams(window.location.search).get('path');
+    if (path) {
+      window.location.href = `https://highlight.xyz/mint/${path}`
+    }
+  </script>
+  <div>redirecting..... (this is a dev hack and won't be needed in final version)</div>
+</body>
+
+</html>
