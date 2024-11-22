@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>embed</title>
+    <div data-widget="highlight-connect-button"></div>
+    <style>
+      body {
+        padding: 50px;
+        background-color: white;
+      }
+
+      .cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .cards > div {
+        margin: 5px;
+        flex-grow: 1;
+      }
+
+      .card-loader {
+        height: 700px;
+        max-width: 600px;
+        background: #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        border-radius: 5px;
+      }
+
+      .events {
+        white-space: pre;
+        font-family: monospace;
+        font-size: 12px;
+        height: 250px;
+        overflow-y: scroll;
+      }
+      .event-div {
+        margin-top: 5px;
+        padding-top: 5px;
+        border-top: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <style>
+      .seed-input {
+        width: 100%;
+        max-width: 600px;
+        font-family: monospace;
+        padding: 8px;
+        font-size: 14px;
+        word-break: break-all;
+      }
+
+      .input-group {
+        margin-bottom: 10px;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 4px;
+      }
+    </style>
+
+    <div data-widget="highlight-connect-wallet"></div>
+
+    <div
+      data-widget="highlight-mint-card"
+      data-mint-collection-id="67176f8edd07536d64dc9e02"
+      data-template="button-only"
+    ></div>
+
+    <div style="margin: 20px 0;">
+      <div class="input-group"></div>
+        <label for="donationMultiplier">Donation Multiplier:</label>
+        <input
+          type="number"
+          id="donationMultiplier"
+          value="1"
+          min="1"
+          step="1"
+          onchange="updateMintState()"
+        />
+
+
+      <div class="input-group">
+        <label for="tokenId">Token ID:</label>
+        <input type="text" id="tokenId" value="3" onchange="setRefreshSeed()" />
+      </div>
+
+      <div class="input-group">
+        <label for="seedValue">Seed Value:</label>
+        <input
+          type="text"
+          id="seedValue"
+          class="seed-input"
+          value="0xb2069869badb09de521dcbbee5fb511a23e2df9dc756e875ac8200e310f8be4b"
+          onchange="setRefreshSeed()"
+        />
+      </div>
+
+
+      </div>
+
+      <div
+        data-widget="highlight-seed-refresh-button"
+        data-mint-collection-id="67176f8edd07536d64dc9e02"
+      ></div>
+    </div>
+
+    <script>
+      function setRefreshSeed() {
+        const tokenId = document.getElementById('tokenId').value;
+        const seed = document.getElementById('seedValue').value;
+
+        window.dispatchEvent(
+          new CustomEvent(`highlight:update-seed-refresh-state`, {
+            detail: {
+              collectionId: "67176f8edd07536d64dc9e02",
+              tokenId: tokenId,
+              seed: seed,
+            },
+          })
+        );
+      }
+
+      function updateMintState() {
+        const multiplier = document.getElementById('donationMultiplier').value || 1;
+        const baseAmount = 0.01;
+        const donationAmount = (baseAmount * parseFloat(multiplier))
+          .toFixed(18)
+          .replace(/\.?0+$/, '');
+
+        window.dispatchEvent(
+          new CustomEvent(`highlight:update-mint-state`, {
+            detail: {
+              collectionId: "67176f8edd07536d64dc9e02",
+              donationAmount: donationAmount,
+              quantity: 1,
+              seed: document.getElementById('seedValue').value,
+            },
+          })
+        );
+        console.log("mint-state-updated");
+      }
+
+      window.addEventListener("highlight:sign-in", (event) => {
+        updateMintState();
+        setRefreshSeed();
+      });
+    </script>
+
+<link rel="stylesheet" href="https://mint.highlight.xyz/assets/embed.css" />
+<script type="module" crossorigin="true" src="https://mint.highlight.xyz/assets/embed.js?v=1" id="highlight-embed-script" data-embed-version="2.0"></script>
+
+    <h4>Events</h4>
+    <button onclick="clearEvents()">Clear log</button>
+    <div id="events" class="events"></div>
+
+    <script>
+      const output = document.getElementById("events");
+      const clearEvents = () => {
+        while (output.firstChild) {
+          output.removeChild(output.firstChild);
+        }
+      };
+
+      const logEvent = (event) => {
+        console.log(`${event.type} event received`, { event });
+        const { type, detail } = event;
+        const text = detail?.collection
+          ? JSON.stringify({ type, detail })
+          : JSON.stringify({ type, detail }, null, 2);
+        const div = document.createElement("div");
+        div.classList.add("event-div");
+        div.textContent = text;
+        output.appendChild(div);
+      };
+
+      const eventNames = [
+        "highlight:mint-initiated",
+        "highlight:minted",
+        "highlight:seed-refresh-initiated",
+        "highlight:seed-refresh-finished",
+        "highlight:sign-in",
+        "highlight:sign-out",
+        "highlight:mint-card-loaded",
+      ]
+
+      eventNames.forEach((eventName) => {
+        window.addEventListener(eventName, logEvent);
+      });
+
+    </script>
+
+
+  </body>
+</html>
